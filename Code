@@ -1,0 +1,12 @@
+import csv
+with open ('testfile.csv') as csv_file: //imports contents from testfile.csv,can be replaced by any CSV file
+    csv_reader =csv.reader(csv_file,delimiter=',')
+    line_count = 0
+    f=open ("sqlfile.txt","a") //creates a new text file on its own
+    for row in csv_reader:
+     if line_count == 0:
+         f.write(f'INSERT INTO myTable((",".join(row)) VALUES\n')
+         line_count +=1
+     else:
+         f.write(f'\'{row[0]}\',\',{row[2]}\',\'{row[3]}\'), \n')
+         line_count +=1
